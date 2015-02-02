@@ -4,14 +4,14 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "stu_constants.h"
+#include "echo_constants.h"
 
+namespace weibo {
 
+const echoConstants g_echo_constants;
 
-const stuConstants g_stu_constants;
-
-stuConstants::stuConstants() {
+echoConstants::echoConstants() {
 }
 
-
+} // namespace
 

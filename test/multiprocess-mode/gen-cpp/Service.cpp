@@ -4,11 +4,11 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "Serv.h"
+#include "Service.h"
 
+namespace weibo {
 
-
-uint32_t Serv_put_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Service_control_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -30,8 +30,8 @@ uint32_t Serv_put_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->s.read(iprot);
-          this->__isset.s = true;
+          xfer += this->param.read(iprot);
+          this->__isset.param = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -48,12 +48,12 @@ uint32_t Serv_put_args::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Serv_put_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Service_control_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("Serv_put_args");
+  xfer += oprot->writeStructBegin("Service_control_args");
 
-  xfer += oprot->writeFieldBegin("s", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->s.write(oprot);
+  xfer += oprot->writeFieldBegin("param", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->param.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -61,12 +61,12 @@ uint32_t Serv_put_args::write(::apache::thrift::protocol::TProtocol* oprot) cons
   return xfer;
 }
 
-uint32_t Serv_put_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Service_control_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("Serv_put_pargs");
+  xfer += oprot->writeStructBegin("Service_control_pargs");
 
-  xfer += oprot->writeFieldBegin("s", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->s)).write(oprot);
+  xfer += oprot->writeFieldBegin("param", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->param)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -74,7 +74,7 @@ uint32_t Serv_put_pargs::write(::apache::thrift::protocol::TProtocol* oprot) con
   return xfer;
 }
 
-uint32_t Serv_put_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Service_control_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -114,11 +114,11 @@ uint32_t Serv_put_result::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Serv_put_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Service_control_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Serv_put_result");
+  xfer += oprot->writeStructBegin("Service_control_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRUCT, 0);
@@ -130,7 +130,7 @@ uint32_t Serv_put_result::write(::apache::thrift::protocol::TProtocol* oprot) co
   return xfer;
 }
 
-uint32_t Serv_put_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Service_control_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -170,19 +170,19 @@ uint32_t Serv_put_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-void ServClient::put(StudentResult& _return, const StudentRequest& s)
+void ServiceClient::control(Response& _return, const Request& param)
 {
-  send_put(s);
-  recv_put(_return);
+  send_control(param);
+  recv_control(_return);
 }
 
-void ServClient::send_put(const StudentRequest& s)
+void ServiceClient::send_control(const Request& param)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("put", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("control", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Serv_put_pargs args;
-  args.s = &s;
+  Service_control_pargs args;
+  args.param = &param;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -190,7 +190,7 @@ void ServClient::send_put(const StudentRequest& s)
   oprot_->getTransport()->flush();
 }
 
-void ServClient::recv_put(StudentResult& _return)
+void ServiceClient::recv_control(Response& _return)
 {
 
   int32_t rseqid = 0;
@@ -210,12 +210,12 @@ void ServClient::recv_put(StudentResult& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("put") != 0) {
+  if (fname.compare("control") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  Serv_put_presult result;
+  Service_control_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -225,10 +225,10 @@ void ServClient::recv_put(StudentResult& _return)
     // _return pointer has now been filled
     return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "put failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "control failed: unknown result");
 }
 
-bool ServProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool ServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -247,38 +247,38 @@ bool ServProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, :
   return true;
 }
 
-void ServProcessor::process_put(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void ServiceProcessor::process_control(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("Serv.put", callContext);
+    ctx = this->eventHandler_->getContext("Service.control", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Serv.put");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Service.control");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "Serv.put");
+    this->eventHandler_->preRead(ctx, "Service.control");
   }
 
-  Serv_put_args args;
+  Service_control_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "Serv.put", bytes);
+    this->eventHandler_->postRead(ctx, "Service.control", bytes);
   }
 
-  Serv_put_result result;
+  Service_control_result result;
   try {
-    iface_->put(result.success, args.s);
+    iface_->control(result.success, args.param);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "Serv.put");
+      this->eventHandler_->handlerError(ctx, "Service.control");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("put", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("control", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -287,25 +287,25 @@ void ServProcessor::process_put(int32_t seqid, ::apache::thrift::protocol::TProt
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "Serv.put");
+    this->eventHandler_->preWrite(ctx, "Service.control");
   }
 
-  oprot->writeMessageBegin("put", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("control", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "Serv.put", bytes);
+    this->eventHandler_->postWrite(ctx, "Service.control", bytes);
   }
 }
 
-::boost::shared_ptr< ::apache::thrift::TProcessor > ServProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< ServIfFactory > cleanup(handlerFactory_);
-  ::boost::shared_ptr< ServIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new ServProcessor(handler));
+::boost::shared_ptr< ::apache::thrift::TProcessor > ServiceProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< ServiceIfFactory > cleanup(handlerFactory_);
+  ::boost::shared_ptr< ServiceIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new ServiceProcessor(handler));
   return processor;
 }
-
+} // namespace
 
