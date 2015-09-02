@@ -9,7 +9,7 @@ using namespace std;
 class Test{
 public:
 	void test(int a,int b){
-		
+        	
 	}
 		
 	static void callback(int a,int b){

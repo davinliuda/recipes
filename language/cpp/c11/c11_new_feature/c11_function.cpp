@@ -70,7 +70,10 @@ void testFunction2(){
 
 int main(){
 
-	testFunction1();
-	testFunction2();
+	//testFunction1();
+	//testFunction2();
 
+
+    FUNC_1 t;
+    t = NULL;
 }
