@@ -11,7 +11,8 @@
 
 using namespace std;
 
-typedef packaged_task<int()> TASK;
+
+typedef packaged_task<vector<int>()> TASK;
 
 #include<pthread.h>
 
@@ -39,8 +40,8 @@ void thread_enter(){
 }
 
 
-std::future<int> maketask(TASK& task){
-	std::future<int> f = task.get_future();
+std::future<vector<int>> maketask(TASK& task){
+	std::future<vector<int>> f = task.get_future();
         mu.lock();
         tasks.push_back(std::move(task));
         mu.unlock();
@@ -48,7 +49,7 @@ std::future<int> maketask(TASK& task){
 }
 
 
-int waitResult(vector<std::future<int>>& f,int timeoutMS){
+int waitResult(vector<std::future<vector<int>>>& f,int timeoutMS){
 
 	vector<std::future_status> status;
 
@@ -71,23 +72,25 @@ int waitResult(vector<std::future<int>>& f,int timeoutMS){
 void processorRequest(){
 
 	TASK task1(
-                []() -> int{
+                []() -> vector<int>{
                         cout<<"req1........"<<endl;
                         usleep(10000);
-                        return 111;
+                        cout<<"req1 over........"<<endl;    
+                        return {111};
                 }
         );
 
         TASK task2(
-                []() -> int{
+                []() -> vector<int>{
                         cout<<"req2........"<<endl;
                         usleep(30000);
-                        return 222;
+                        cout<<"req2 over........."<<endl;
+                        return {222};
                 }
         );
 	
-	std::future<int> f1 = maketask(task1);
-	std::future<int> f2 = maketask(task2);
+	std::future<vector<int>> f1 = maketask(task1);
+	std::future<vector<int>> f2 = maketask(task2);
 
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;
@@ -96,19 +99,22 @@ void processorRequest(){
 	
 	//std::cout << "start:" << std::ctime(&start);
 	
-	vector<std::future<int>> waitEvents;
+	vector<std::future<vector<int>>> waitEvents;
 	waitEvents.push_back(std::move(f1));
 	waitEvents.push_back(std::move(f2));
 
 
 
-	if(waitResult(waitEvents,50) == -1){
+	if(waitResult(waitEvents,20) == -1){
 		cout<<"timeout"<<endl;
 	}else{
 		cout<<"ok"<<endl;
 		for(int i=0;i<waitEvents.size();i++){
-			cout<<waitEvents[i].get()<<endl;
-		}
+			const std::vector<int>& result = waitEvents[i].get();
+		    for(int j=0;j<result.size();j++){
+                cout<<result[j]<<endl;
+            }
+        }
 	}
 	
 	end = std::chrono::system_clock::now();
@@ -123,6 +129,17 @@ void processorRequest(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 int main(){
 	vector<thread*> threadpool;
 	
@@ -134,9 +151,9 @@ int main(){
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 
         start = std::chrono::system_clock::now();
-	for(int i=0;i<100;i++){
+	//for(int i=0;i<100;i++){
 		processorRequest();
-	}
+	//}
 	end = std::chrono::system_clock::now();
 	int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>
                              (end-start).count();
@@ -146,5 +163,4 @@ int main(){
 	for(int i=0;i<threadpool.size();i++){
 		threadpool[i]->join();
 	}
-
 }
