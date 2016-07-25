@@ -7,7 +7,7 @@ notifications:
   email: xloogson@gmail.com
 
 before_script:
-    - ./build.sh
+    - ./travis/build.sh
 
 script:
     - exit 0
