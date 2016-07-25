@@ -1,1 +1,13 @@
-language: cpp
+language: shell 
+
+os:
+  - linux
+
+notifications:
+  email: xloogson@gmail.com
+
+before_script:
+    - ./build.sh
+
+script:
+    - exit 0
