@@ -22,11 +22,11 @@ int main(){
 
     Test obj;
 
-    auto p = std::bind(&Test::print, obj);
+    std::function<void()> p = std::bind(&Test::print, obj);
 
     p();
 
-    auto p1 = std::bind(&Test::print1, obj, std::placeholders::_1);
+    std::function<void(int a)> p1 = std::bind(&Test::print1, obj, std::placeholders::_1);
     
     p1(1);
 
