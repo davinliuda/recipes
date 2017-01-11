@@ -54,9 +54,38 @@ int atoi(const char* ptr) {
 
 
 std::string large_mul(const std::string& a, const std::string& b){
-    
+        
 }
 
+
+void remove_blank(std::string& buf) {
+    int j = 0;
+    for(int i = 0; i < buf.size(); i++){
+        if(buf[i] != ' '){
+            buf[j++] = buf[i];
+        }
+    }
+    buf[j] = 0;
+}
+
+const char* str_str(const char* match, const char* data) {
+    bool found = true;
+    int i = 0;
+    for(; i<strlen(data); i++){
+        found = true;
+        for(int j = 0; j< strlen(match); j++){
+            if(i+j < strlen(data) && match[j] != data[i+j]){
+                found = false;
+                break;
+            }
+        }
+        std::cout<<"found"<<found<<i<<endl;
+        if(found){
+            break;
+        }
+    }
+    return data + i;
+}
 
 char* strcpy(char* dst, char* src){
     assert(dst != NULL || src != NULL);
@@ -78,6 +107,12 @@ int main(){
     char buf1[10] = {"abcd"};
     char buf2[10];
     strcpy(buf2, buf1);
-    std::cout<<buf2;
+    std::cout<<buf2<<endl;
 
+    std::string buf = "abd dd";
+    remove_blank(buf);
+    std::cout<<"remove_blank"<<buf<<endl;
+
+
+    std::cout<<str_str("abc", "ddfaacbcdef");
 }
