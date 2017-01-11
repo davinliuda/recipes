@@ -3,6 +3,8 @@ using namespace std;
 #include<string>
 #include <assert.h>
 #include <string.h>
+#include <stdio.h>
+
 
 std::string itoa(int value) {
     std::string buf;
@@ -56,10 +58,26 @@ std::string large_mul(const std::string& a, const std::string& b){
 }
 
 
+char* strcpy(char* dst, char* src){
+    assert(dst != NULL || src != NULL);
+    char* tmp_dst = dst;
+    
+    while(*src != 0){
+        *dst++ = *src++;
+    }
+    *dst= '\0';
+    return tmp_dst;
+}
+
 int main(){
     std::string s = itoa(123);
     std::cout<<s.c_str()<<" "<<s.size()<<endl;
 
     std::cout<<atoi("-1112")<<endl;
+
+    char buf1[10] = {"abcd"};
+    char buf2[10];
+    strcpy(buf2, buf1);
+    std::cout<<buf2;
 
 }

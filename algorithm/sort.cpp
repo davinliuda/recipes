@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 #include <vector>
-
+#include <list>
 
 int select_sort(std::vector<int>& data) {
     for(int i = 0; i < data.size(); i++){
@@ -38,6 +38,18 @@ int bubble_sort(std::vector<int>& data) {
 }
 
 
+int bubble_sort(std::list<int>& data) {
+    for(auto it = data.begin(); it != data.end(); ++it){
+        auto it1 = it;
+        std::advance(it1, 1);
+        for(;it1 != data.end(); ++it1){
+            if(*it1 < *it){
+                std::swap(*it, *it1);
+            }
+        }
+    } 
+}
+
 
 void quick_sort(std::vector<int>& data, int begin, int end){
     if(begin < end){
@@ -59,7 +71,6 @@ void quick_sort(std::vector<int>& data, int begin, int end){
             }
         }    
         data[j] = tmp;
-        std::cout<<j<<endl;
         
         quick_sort(data, begin, i - 1);
         quick_sort(data, i + 1, end);
@@ -72,13 +83,38 @@ void max_heap_sort(std::vector<int>& data) {
     
 }
 
+template<class T>
+void print(typename T::iterator begin, typename T::iterator end){
+    for(; begin != end; ++begin){
+        std::cout<<*begin<<" ";
+    }
+    std::cout<<std::endl;
+}
+
 
 int main(){
-    std::vector<int> data = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
-    //select_sort(data);
-    //bubble_sort(data);
-    quick_sort(data, 0, data.size() - 1);
-    for(int i=0;i<data.size(); i++){
-        std::cout<<data[i]<<" ";
+    
+    {
+        std::list<int> data= {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        bubble_sort(data);  
+        print<std::list<int>>(data.begin(), data.end());
     }
+
+    { 
+        std::vector<int> data = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        select_sort(data);
+        print<std::vector<int>>(data.begin(), data.end());
+    }
+
+    {
+        std::vector<int> data = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        bubble_sort(data);
+        print<std::vector<int>>(data.begin(), data.end());
+    }
+    {
+        std::vector<int> data = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        quick_sort(data, 0, data.size() - 1);
+        print<std::vector<int>>(data.begin(), data.end());
+    }
+
 }      
