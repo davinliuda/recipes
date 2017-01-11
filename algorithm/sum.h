@@ -1,7 +1,7 @@
-#ifndef _SUM_H
-#define _SUM_H
+#include <iostream>
+using namespace std;
 
-int Sum(int* src,int n){
+int sum(int* src,int n){
 	if(n == 0){
 		return 0;
 	}
@@ -9,4 +9,13 @@ int Sum(int* src,int n){
 	return n + a;
 }
 
-#endif
+
+void testSum()
+{
+    int a[10] = {1,2,3,4,5,6,7,8,9,10};
+    cout<<Sum(a,10)<<endl;
+}
+
+int main(){
+    testSum();
+}

@@ -1,6 +1,5 @@
-#ifndef BINARY_SERACH_H
-#define BINARY_SERACH_H
-
+#include <iostream>
+using namespace std;
 
 template<class Type>
 bool BinarySerach(Type data[],int len,const Type& value)
@@ -26,5 +25,19 @@ bool BinarySerach(Type data[],int len,const Type& value)
 	return false;
 }
 
-#endif
+
+void testBinarySerach()
+{
+    int srcData[10] = {1,2,3,4,5,6,7,8,9,10};
+    cout<<"found 1:"<<BinarySerach<int>(srcData,10,1)<<endl;
+    cout<<"found 10:"<<BinarySerach<int>(srcData,10,10)<<endl;
+    cout<<"found 80:"<<BinarySerach<int>(srcData,10,80)<<endl;
+}
+
+
+int main(){
+    testBinarySerach();
+
+}
+
 
