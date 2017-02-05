@@ -35,7 +35,7 @@ int insert_sort(std::vector<int>& data) {
                 break;
             }
         }
-        data[j+1] = key;
+        //data[j+1] = key;
     }
 }
 
