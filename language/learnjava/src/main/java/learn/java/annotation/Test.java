@@ -10,7 +10,7 @@ import java.lang.annotation.Annotation;
 public class Test {
 
     public static void print() throws ClassNotFoundException {
-        Class clazz = Class.forName("learn.java.annotation.Person");
+        Class clazz = Class.forName("learn.java.annotation.Test");
 
         Annotation[] annotations = clazz.getAnnotations();
 
