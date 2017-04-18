@@ -16,13 +16,13 @@ public class Test {
 
         System.out.println("annotations:" + annotations.length);
 
-        for(Annotation annotation: annotations){
-            Person p = (Person)annotation;
+        for (Annotation annotation : annotations) {
+            Person p = (Person) annotation;
             System.out.println(p.property());
         }
     }
 
-    public static void  main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException {
         Test.print();
     }
 }

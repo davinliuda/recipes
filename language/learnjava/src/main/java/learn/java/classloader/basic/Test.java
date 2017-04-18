@@ -5,7 +5,7 @@ package learn.java.classloader.basic;
  */
 public class Test {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
             Person p = (Person) Class.forName("learn.java.classloader.basic.Person").newInstance();//Person p = new Person();
             p.print();

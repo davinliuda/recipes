@@ -5,7 +5,7 @@ package learn.java.classloader.basic;
  */
 public class Person {
 
-    void print(){
+    void print() {
         System.out.println("i'm person");
     }
 }

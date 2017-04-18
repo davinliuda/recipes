@@ -9,20 +9,20 @@ public class ControllerAdapter {
 
     private ClassPathXmlApplicationContext ctx;
 
-    public ControllerAdapter(){
+    public ControllerAdapter() {
         ctx = new ClassPathXmlApplicationContext("classpath:spring-application.xml");
     }
 
-    public ApiController getApi(String uri){
+    public ApiController getApi(String uri) {
         ApiController ac = null;
-        if(ctx.containsBean(uri)) {
+        if (ctx.containsBean(uri)) {
             ac = ctx.getBean(uri, ApiController.class);
         }
         return ac;
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
     }
 }

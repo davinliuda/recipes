@@ -10,7 +10,7 @@ public class MyVector<E> {
 
     List<E> list = new ArrayList<E>();
 
-    public void Add(E e){
+    public void Add(E e) {
         list.add(e);
     }
 
