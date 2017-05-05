@@ -32,7 +32,6 @@ int get_file_list(const std::string& file,std::vector<std::string>& lst){
 
 int main()
 {
-
     std::vector<std::string> result;
     cout<<get_file_list("/tmp/liuda/wifidata/have_pwd/20150604/",result)<<endl;
     for(size_t i=0;i<result.size();i++){

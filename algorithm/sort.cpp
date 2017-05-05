@@ -3,6 +3,7 @@ using namespace std;
 #include <vector>
 #include <list>
 
+//选择排序，就是在后面不断的选最小的，把最小的那个数字交换到最前面
 int select_sort(std::vector<int>& data) {
     for(int i = 0; i < data.size(); i++){
         int min = data[i];
@@ -21,12 +22,24 @@ int select_sort(std::vector<int>& data) {
 
 }
 
-
+//插入排序是，先保持前面的序列是有序的，然后把后面的数据插入到有序里面
+//解题思路是，需要在有序里面寻找，然后移动并插入到里面
 int insert_sort(std::vector<int>& data) {
-    
-
+    for(int i = 0; i < data.size(); i++){
+        int j = i-1;
+        int key = data[i];
+        for(; j >= 0; j--) {
+            if(data[j] > key){
+                data[j+1] = data[j];
+            }else{
+                break;
+            }
+        }
+        //data[j+1] = key;
+    }
 }
 
+//冒泡排序，就是把最大的不断的向后面移动
 int bubble_sort(std::vector<int>& data) {
     for(int i = 0; i < data.size(); i++) {
         for ( int j = i + 1; j < data.size(); j++){
@@ -50,6 +63,13 @@ int bubble_sort(std::list<int>& data) {
     } 
 }
 
+//快速排序
+//先找第一个数字
+//然后从右向左找，直到找到一个比它大的数字
+//然后和右边的交换
+//然后从左向右找，直到找到一个比它小的数字
+//然后和左边交换
+//反复上面几个步骤，找到第一个数字的位置，放置其中。然后用分治反复做。
 
 void quick_sort(std::vector<int>& data, int begin, int end){
     if(begin < end){
@@ -116,5 +136,10 @@ int main(){
         quick_sort(data, 0, data.size() - 1);
         print<std::vector<int>>(data.begin(), data.end());
     }
-
+    {
+        std::vector<int> data = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        insert_sort(data);
+        print<std::vector<int>>(data.begin(), data.end()); 
+    }
+    
 }      
