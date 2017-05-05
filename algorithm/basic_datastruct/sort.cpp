@@ -3,6 +3,10 @@ using namespace std;
 #include <vector>
 #include <list>
 
+
+//排序算法的复杂度搞一下.
+
+
 //选择排序，就是在后面不断的选最小的，把最小的那个数字交换到最前面
 int select_sort(std::vector<int>& data) {
     for(int i = 0; i < data.size(); i++){

@@ -98,6 +98,22 @@ char* strcpy(char* dst, char* src){
     return tmp_dst;
 }
 
+
+int strcmp(const char *cs, const char *ct)
+{
+    
+}
+
+void *memcpy(void *dest, const void *src, size_t count)
+{
+    
+}
+
+int memcmp(const void *cs, const void *ct, size_t count)
+{
+    
+}
+
 int main(){
     std::string s = itoa(123);
     std::cout<<s.c_str()<<" "<<s.size()<<endl;
