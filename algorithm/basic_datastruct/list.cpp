@@ -59,6 +59,13 @@ void custom_reverse(Node*& node) {
 }
 
 
+Node* merge(Node* node, Node* node) {
+	
+}
+
+Node* backwardN(Node* node) {
+	
+}
 
 int main() {
 	Node* node = make_list();	

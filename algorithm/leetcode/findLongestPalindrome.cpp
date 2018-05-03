@@ -1,0 +1,7 @@
+
+int findLongestPalindrome() {
+	
+}
+
+int main() {
+}

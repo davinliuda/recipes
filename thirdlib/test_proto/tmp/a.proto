@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package ProtoCS;  
+
+enum CmdID  
+{  
+	CID_MOD = 1;
+	//extensions 200 to 300;
+}  
+
+message MsgHead  
+{  
+	optional int32 cid = 1;  
+}  
+
+message Msg  
+{  
+	optional MsgHead head = 1;  
+	optional int32 ret_ret_ret = 2;  
+	extensions 100 to 10000;   
+}  

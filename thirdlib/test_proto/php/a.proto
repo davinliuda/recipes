@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package ProtoCS;  
+
+enum CmdID  
+{  
+	CID_MOD = 1;
+}  
+
+message MsgHead  
+{  
+	optional int32 cid = 1;  
+}  
+
+
+
+message ModReq
+{
+	    optional bool b = 1;
+}
+
+message Msg  
+{  
+	optional MsgHead head = 1;  
+	optional int32 ret_ret_ret = 2;
+	optional int32 id = 126;
+	optional ModReq mod_req = 127;	
+}  

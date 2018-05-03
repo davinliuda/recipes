@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package ProtoCS1;
+
+enum CmdID
+{
+	    CID_MOD = 1;
+}
+
+
+
+message DD
+{
+	    extensions 1000 to 2000;
+}
+~     

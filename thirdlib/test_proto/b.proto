@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+import "a.proto";  
+
+package ProtoCS;  
+
+message ModReq  
+{  
+	optional bool b = 1;  
+}  
+
+extend Msg  
+{  
+	optional int32 id = 126;  
+	optional ModReq mod_req = 127;  
+}
+
+extend DD 
+{
+	optional int32 id1 = 126;
+}
