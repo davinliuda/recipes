@@ -1,0 +1,13 @@
+option cc_generic_services = true;
+
+message FooRequest {
+	required string text = 1;
+}
+
+message FooResponse {
+	required string text = 1;
+}
+
+service EchoService {
+	rpc Foo(FooRequest) returns(FooResponse);
+}

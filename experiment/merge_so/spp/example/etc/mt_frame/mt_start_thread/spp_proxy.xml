@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<proxy>
+    <acceptor timeout="60">
+        <entry type="udp" if="eth1" port="9902" />
+        <entry type="tcp" if="eth1" port="9902" />
+    </acceptor>
+    <connector>
+        <entry groupid="1" />
+    </connector>
+    <flog level="3" />
+    <log level="3" />
+    <module bin="../example/bin/mt_start_thread.so" etc="" />
+    <result bin="" />
+    <exception monitor="0" realtime="1" />
+</proxy>
