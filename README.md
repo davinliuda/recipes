@@ -6,7 +6,7 @@ algorithm
 ------
 算法练习
 
-demo
+experiment
 ------
 一些想法的实现
 
