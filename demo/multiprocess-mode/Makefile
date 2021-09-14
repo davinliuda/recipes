@@ -1,3 +1,0 @@
-g++ -g main.cpp TNonblockingServer.cpp gen-cpp/echo_constants.cpp gen-cpp/echo_types.cpp gen-cpp/Service.cpp -L gen-cpp/ -L /data0/app/thrift/lib/ -I /data0/app/thrift/include/thrift/ -I /data0/app/thrift/include/ -I /usr/local/boost/include/ -lthrift  -I /usr/local/libevent/include/ -L /usr/local/libevent/lib/ -levent -o server
-
-g++ -g client.cpp gen-cpp/echo_constants.cpp gen-cpp/echo_types.cpp gen-cpp/Service.cpp -L gen-cpp/ -L /data0/app/thrift/lib/ -I /data0/app/thrift/include/thrift/ -I /data0/app/thrift/include/ -I /usr/local/boost/include/ -lthrift -lthriftnb -I /usr/local/libevent/include/ -L /usr/local/libevent/lib/ -levent -o client 
